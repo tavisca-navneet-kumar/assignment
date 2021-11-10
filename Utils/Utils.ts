@@ -1,7 +1,7 @@
 export class Utils {
 
     static clickOnElement(element: WebdriverIO.Element) {
-        element.waitForEnabled();
+        element.waitForClickable();
         element.click();
 
     }
@@ -28,5 +28,11 @@ export class Utils {
 
     static twoSecondsDeadWait(){
         browser.pause(2000);
+    }
+
+    static clickOnElementByText(value:string){
+        const hotel = $('a[title~='+value+']');
+        hotel.waitForClickable();
+        hotel.click();
     }
 }

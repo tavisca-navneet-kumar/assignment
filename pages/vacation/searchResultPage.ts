@@ -1,17 +1,18 @@
 import { Utils } from "../../Utils/Utils";
+import { HotelInfo } from "./hotelInfoPage";
 
 export enum STARRATING {
     FIVESTAR,
     FOURSTAR,
     THREESTAR
 }
-export class searchResult {
+export class SearchResult {
 
     get hotelsCount(): WebdriverIO.Element { return $("//h2[contains(.,'Hotels')]"); }
     get searchCriteria(): WebdriverIO.Element { return $(".wayfinder-info"); }
-    get fiveStarRating(): WebdriverIO.Element { return $("#StarRatingFilter5"); }
-    get fourStarRating(): WebdriverIO.Element { return $("#StarRatingFilter5"); }
-    get threeStarRating(): WebdriverIO.Element { return $("#StarRatingFilter5"); }
+    get fiveStarRating(): WebdriverIO.Element { return $("label[for=StarRatingFilter5]"); }
+    get fourStarRating(): WebdriverIO.Element { return $("label[for=StarRatingFilter4]"); }
+    get threeStarRating(): WebdriverIO.Element { return $("label[for=StarRatingFilter3]"); }
     get hotelNameFilter(): WebdriverIO.Element { return $("#HotelNameFilter"); }
 
     getHotelCount() {
@@ -43,5 +44,10 @@ export class searchResult {
 
     removeFilters() {
         Utils.refreshPage();
+    }
+
+    selectHotel(hotelName:string){
+        Utils.clickOnElementByText(hotelName);
+        return new HotelInfo();
     }
 }

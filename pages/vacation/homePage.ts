@@ -1,5 +1,5 @@
 import { Utils } from "../../Utils/Utils";
-import { searchResult } from "./searchResult";
+import { SearchResult } from "./searchResultPage";
 
 class homePage {
 
@@ -41,7 +41,7 @@ class homePage {
         Utils.setValueAndTab(this.checkInDateTextBox,checkInDate);
         Utils.setValueAndTab(this.checkOutDateTextBox,checkOutDate);
         Utils.clickOnElement(this.searchButton);
-        return new searchResult();
+        return new SearchResult();
     }
 
 
