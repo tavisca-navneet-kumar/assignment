@@ -1,17 +1,18 @@
 import HomePage from "../../pages/google/homePage";
+import { AssertionData } from "../data/testData";
 
 describe('Test Google', () => {
 
 
-    it('Should have title "Google".', () => {
-        HomePage.launchPage("https://www.google.com/ @Smoke")
+    it('Should have title "Google". @Smoke', () => {
+        HomePage.launchPage()
 
-        expect(HomePage.getPageTitle()).toBe("Google");
+        expect(HomePage.getPageTitle()).toBe(AssertionData.GoogleTitle);
     });
 
     it("Should have content I'm Feeleing Lucky. @Regression", () => {
-        HomePage.launchPage("https://www.google.com/");
-        expect(HomePage.getPageContent()).toBe("I'm Feeling Lucky");
+        HomePage.launchPage();
+        expect(HomePage.getPageContent()).toBe(AssertionData.GooglePageText);
 
     })
 

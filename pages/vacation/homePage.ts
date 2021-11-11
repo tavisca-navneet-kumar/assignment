@@ -1,3 +1,4 @@
+import { ApplictionURLS } from "../../test/data/testData";
 import { Utils } from "../../Utils/Utils";
 import { SearchResult } from "./searchResultPage";
 
@@ -29,21 +30,20 @@ class homePage {
 
     launchPage() {
 
-        return browser.url("https://vacationsdirect.com");
+        return browser.url(ApplictionURLS.VacationAPP);
     }
 
     goToHotelTab(){
         Utils.clickOnElement(this.hotelTab);
     }
 
-    searchHotel(destination:string,checkInDate:string,checkOutDate:string){
+    searchHotels(destination:string,checkInDate:string,checkOutDate:string){
         Utils.setValueInTextBox(this.destinationTextBox,destination);
         Utils.setValueAndTab(this.checkInDateTextBox,checkInDate);
         Utils.setValueAndTab(this.checkOutDateTextBox,checkOutDate);
         Utils.clickOnElement(this.searchButton);
         return new SearchResult();
     }
-
 
 }
 

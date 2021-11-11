@@ -1,3 +1,4 @@
+import { ApplictionURLS } from "../../test/data/testData";
 
 class BasePage {
 
@@ -5,8 +6,8 @@ class BasePage {
         return $("//input[contains(@value,'Feeling Lucky')]");
     }
 
-    launchPage(url: string) {
-        return browser.url(url);
+    launchPage() {
+        return browser.url(ApplictionURLS.GoogleApp);
     }
 
     getPageTitle(): string{

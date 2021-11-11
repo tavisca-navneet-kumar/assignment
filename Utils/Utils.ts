@@ -1,9 +1,18 @@
+import { isTypeElement } from "typescript";
+
 export class Utils {
 
     static clickOnElement(element: WebdriverIO.Element) {
         element.waitForClickable();
         element.click();
 
+    }
+
+    static scrollToTheElementAndClick(element: WebdriverIO.Element){
+        element.scrollIntoView();
+        this.twoSecondsDeadWait();
+        element.click();
+        this.twoSecondsDeadWait();
     }
 
     static setValueInTextBox(element: WebdriverIO.Element, value: string) {
@@ -34,5 +43,11 @@ export class Utils {
         const hotel = $('a[title~='+value+']');
         hotel.waitForClickable();
         hotel.click();
+    }
+
+    static getElementAttributeValue(element:WebdriverIO.Element,attribute:string){
+        element.waitForDisplayed();
+        element.waitForEnabled();
+        return element.getAttribute(attribute);
     }
 }
