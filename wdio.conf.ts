@@ -1,4 +1,5 @@
-export const config: WebdriverIO.Config = {
+const { join } = require('path');
+exports.config = {
     //
     // ====================
     // Runner Configuration
@@ -50,7 +51,7 @@ export const config: WebdriverIO.Config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-    
+
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
@@ -58,7 +59,7 @@ export const config: WebdriverIO.Config = {
         //
         browserName: 'chrome',
         'goog:chromeOptions': {
-            args: ['--start-maximized']
+            args: ['--start-maximized','--headless']
         },
         acceptInsecureCerts: true
         // If outputDir is provided WebdriverIO can capture driver session logs
@@ -73,7 +74,7 @@ export const config: WebdriverIO.Config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'info',
+    logLevel: 'error',
     //
     // Set specific log levels per logger
     // loggers:
@@ -100,7 +101,7 @@ export const config: WebdriverIO.Config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 30000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
@@ -113,8 +114,8 @@ export const config: WebdriverIO.Config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver'],
-    
+   
+
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks
@@ -136,12 +137,11 @@ export const config: WebdriverIO.Config = {
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
     reporters: ['spec',
-        ['allure', {outputDir: 'allure-results'}]
-    
+        ['allure', { outputDir: 'allure-results'}]
+
     ],
 
 
-    
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
@@ -235,8 +235,21 @@ export const config: WebdriverIO.Config = {
      * @param {Boolean} result.passed    true if test has passed, otherwise false
      * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-    // },
+    afterTest: function (test, context, { error, result, duration, passed, retries }) {
+        
+        var total_width =  browser.execute(function(){
+            return  document.body.offsetWidth
+         })
+        //var total_height = browser.execute("return document.body.scrollHeight",[true])
+        var total_height =  browser.execute(function(){
+            return document.body.scrollHeight
+         })
+
+         console.log(total_width +" , "+ total_height);
+        browser.setWindowSize(total_width, total_height);        
+        browser.takeScreenshot();
+    },
+
 
 
     /**

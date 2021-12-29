@@ -31,8 +31,8 @@ export enum AssertionData{
 export enum TestData{
     SearchedDestinationPune = "Pune",
     SearchedDestinationNewYork = "New York, NY, US",
-    SearchedFromDate = "11/28/21", 
-    SearchedToDate = "11/29/21",
+    SearchedFromDate = "12/28/21", 
+    SearchedToDate = "12/29/21",
     PuneSelectedHotelConrad = "Conrad"
 }
 
