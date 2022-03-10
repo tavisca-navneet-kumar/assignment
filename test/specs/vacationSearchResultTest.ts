@@ -6,38 +6,38 @@ describe('Test Vacation Applicaion:', () => {
     describe('Destination City:', () => {
         let SearchResults: SearchResult;
 
-        before(function () {
-            HomePage.launchPage();
-            HomePage.goToHotelTab();
-            SearchResults = HomePage.searchHotels(TestData.SearchedDestinationPune, TestData.SearchedFromDate, TestData.SearchedToDate);
+        before(async function () {
+            await HomePage.launchPage();
+            await HomePage.goToHotelTab();
+            SearchResults = await HomePage.searchHotels(TestData.SearchedDestinationPune, TestData.SearchedFromDate, TestData.SearchedToDate);
         })
-        it('Should have correct hotel count. @Regression', () => {
+        it('Should have correct hotel count. @Regression', async () => {
 
-            expect(SearchResults.getHotelCount()).toContain(AssertionData.PuneHotelCount);
-
-        });
-
-        it('Should have correct Destination. @Smoke', () => {
-            expect(SearchResults.getSearchCriteria()).toContain(AssertionData.SearchedDestinationPune);
+            expect(await SearchResults.getHotelCount()).toContain(AssertionData.PuneHotelCount);
 
         });
 
-        it('Should have correct ChecIn and CheckOut Dates. @Regression', () => {
-            expect(SearchResults.getSearchCriteria()).toContain(AssertionData.SearchedFromDate);
-            expect(SearchResults.getSearchCriteria()).toContain(AssertionData.SearchedToDate);
+        it('Should have correct Destination. @Smoke', async () => {
+            expect(await SearchResults.getSearchCriteria()).toContain(AssertionData.SearchedDestinationPune);
 
         });
 
-        it('Should have correct result for Star Filter. @Smoke', () => {
-            SearchResults.applyStarFilter(HotelStarRating.FIVESTAR);
-            expect(SearchResults.getHotelCount()).toContain(AssertionData.PuneFiveStarHotelCount);
+        it('Should have correct ChecIn and CheckOut Dates. @Regression', async () => {
+            expect(await SearchResults.getSearchCriteria()).toContain(AssertionData.SearchedFromDate);
+            expect(await SearchResults.getSearchCriteria()).toContain(AssertionData.SearchedToDate);
 
         });
 
-        it('Should have correct result for Name Filter. @Regression', () => {
-            SearchResults.removeFilters();
-            SearchResults.applyNameFilter(AssertionData.PuneSearchedHotelHyatt);
-            expect(SearchResults.getHotelCount()).toContain(AssertionData.PuneHyattHotelCount);
+        it('Should have correct result for Star Filter. @Smoke', async () => {
+            await SearchResults.applyStarFilter(HotelStarRating.FIVESTAR);
+            expect(await SearchResults.getHotelCount()).toContain(AssertionData.PuneFiveStarHotelCount);
+
+        });
+
+        it('Should have correct result for Name Filter. @Regression', async () => {
+            await SearchResults.removeFilters();
+            await SearchResults.applyNameFilter(AssertionData.PuneSearchedHotelHyatt);
+            expect(await SearchResults.getHotelCount()).toContain(AssertionData.PuneHyattHotelCount);
 
         });
     });

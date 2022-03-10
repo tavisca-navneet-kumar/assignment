@@ -28,21 +28,21 @@ class homePage {
         return $(".hotel__search--desktop");
     }
 
-    launchPage() {
+    async launchPage() {
 
-        return browser.url(ApplictionURLS.VacationAPP);
+        return await browser.url(ApplictionURLS.VacationAPP);
     }
 
-    goToHotelTab(){
-        Utils.clickOnElement(this.hotelTab);
+    async goToHotelTab(){
+        await Utils.clickOnElement(this.hotelTab);
     }
 
-    searchHotels(destination:string,checkInDate:string,checkOutDate:string){
-        Utils.setValueInTextBox(this.destinationTextBox,destination);
-        Utils.setValueAndTab(this.checkInDateTextBox,checkInDate);
-        Utils.setValueAndTab(this.checkOutDateTextBox,checkOutDate);
-        Utils.clickOnElement(this.searchButton);
-        return new SearchResult();
+    async searchHotels(destination:string,checkInDate:string,checkOutDate:string){
+        await Utils.setValueInTextBox(this.destinationTextBox,destination);
+        await Utils.setValueAndTab(this.checkInDateTextBox,checkInDate);
+        await Utils.setValueAndTab(this.checkOutDateTextBox,checkOutDate);
+        await Utils.clickOnElement(this.searchButton);
+        return await new SearchResult();
     }
 
 }

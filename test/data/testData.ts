@@ -13,13 +13,13 @@ export enum AssertionData{
     GoogleTitle = "Google",
     GooglePageText = "I'm Feeling Lucky",
     SearchedDestinationPune = "Pune",
-    SearchedFromDate = "Nov 28, 2021", 
-    SearchedToDate = "Nov 29, 2021",
-    PuneHotelCount = "9 Hotels",
-    PuneFiveStarHotelCount = "4 Hotels",
+    SearchedFromDate = "Mar 28, 2022", 
+    SearchedToDate = "Mar 29, 2022",
+    PuneHotelCount = "8 Hotels",
+    PuneFiveStarHotelCount = "3 Hotels",
     PuneSelectedHotelConrad = "Conrad Pune",
     PuneConradStarRating = "5",
-    PuneConradRoomCount = "5",
+    PuneConradRoomCount = "10",
     PuneSearchedHotelHyatt = "Hyatt",
     PuneHyattHotelCount = "2 Hotels",
     SortignOrderAscending = "asc",
@@ -31,8 +31,8 @@ export enum AssertionData{
 export enum TestData{
     SearchedDestinationPune = "Pune",
     SearchedDestinationNewYork = "New York, NY, US",
-    SearchedFromDate = "11/28/21", 
-    SearchedToDate = "11/29/21",
+    SearchedFromDate = "03/28/22", 
+    SearchedToDate = "03/29/22",
     PuneSelectedHotelConrad = "Conrad"
 }
 
