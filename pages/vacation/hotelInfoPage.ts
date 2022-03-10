@@ -5,15 +5,15 @@ export class HotelInfo {
     get hotelNameInfo(): WebdriverIO.Element { return $("div[class~=hotel-redesign-detail-header-main] h2 span[class~=margin-right-1]"); }
     get roomCountInfo(): WebdriverIO.Element { return $("#hotel-rooms-count strong"); }
 
-    getHotleRatingInfo() {
+    async getHotleRatingInfo() {
         return Utils.getElementText(this.hotleRatingInfo);
     }
 
-    getHotleNameInfo() {
+    async getHotleNameInfo() {
         return Utils.getElementText(this.hotelNameInfo);
     }
 
-    getRoomCountInfo() {
+    async getRoomCountInfo() {
         return Utils.getElementText(this.roomCountInfo);
     }
 

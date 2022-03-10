@@ -6,16 +6,16 @@ class BasePage {
         return $("//input[contains(@value,'Feeling Lucky')]");
     }
 
-    launchPage() {
-        return browser.url(ApplictionURLS.GoogleApp);
+    async launchPage() {
+        return await browser.url(ApplictionURLS.GoogleApp);
     }
 
-    getPageTitle(): string{
-        return browser.getTitle();
+    async getPageTitle(){
+        return await browser.getTitle();
     }
 
-    getPageContent(){
-        return this.button.getAttribute("value");
+    async getPageContent(){
+        return await this.button.getAttribute("value");
     }
 }
 

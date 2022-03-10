@@ -17,79 +17,84 @@ export class SearchResult {
     get paginationPage1(): WebdriverIO.Element { return $("button[data-qaid=Button_Page_1]") }
     get paginationPage2(): WebdriverIO.Element { return $("button[data-qaid=Button_Page_2]") }
 
-    getHotelCount() {
-        return Utils.getElementText(this.hotelsCount);
+    async getHotelCount() {
+        return await Utils.getElementText(this.hotelsCount);
     }
 
-    getSearchCriteria() {
-        return Utils.getElementText(this.searchCriteria);
+    async getSearchCriteria() {
+        return await Utils.getElementText(this.searchCriteria);
     }
 
-    applyStarFilter(rating: HotelStarRating) {
+    async applyStarFilter(rating: HotelStarRating) {
         switch (rating) {
-            case 0: Utils.clickOnElement(this.fiveStarRating);
-                Utils.twoSecondsDeadWait();
+            case 0: await Utils.clickOnElement(this.fiveStarRating);
+                await Utils.twoSecondsDeadWait();
                 break;
-            case 1: Utils.clickOnElement(this.fourStarRating);
-                Utils.twoSecondsDeadWait();
+            case 1: await Utils.clickOnElement(this.fourStarRating);
+                await Utils.twoSecondsDeadWait();
                 break;
-            case 2: Utils.clickOnElement(this.threeStarRating);
-                Utils.twoSecondsDeadWait();
+            case 2: await Utils.clickOnElement(this.threeStarRating);
+                await Utils.twoSecondsDeadWait();
                 break;
         }
     }
 
-    applyNameFilter(hotelName: string) {
-        Utils.setValueAndTab(this.hotelNameFilter, hotelName);
-        Utils.twoSecondsDeadWait();
+    async applyNameFilter(hotelName: string) {
+        await Utils.setValueAndTab(this.hotelNameFilter, hotelName);
+        await Utils.twoSecondsDeadWait();
     }
 
-    removeFilters() {
-        Utils.refreshPage();
+    async removeFilters() {
+        await Utils.refreshPage();
     }
 
-    selectHotel(hotelName: string) {
-        Utils.clickOnElementByText(hotelName);
-        return new HotelInfo();
+    async selectHotel(hotelName: string) {
+        await Utils.clickOnElementByText(hotelName);
+        return await new HotelInfo();
     }
-    setSorting(SortingOptions) {
+    async setSorting(SortingOptions) {
         switch (SortingOptions) {
-            case 0: Utils.clickOnElement(this.recommendedSorting);
+            case 0: await Utils.clickOnElement(this.recommendedSorting);
+                await Utils.twoSecondsDeadWait();
                 break;
-            case 1: Utils.clickOnElement(this.starRatingSorting);
+            case 1: await Utils.clickOnElement(this.starRatingSorting);
+                await Utils.twoSecondsDeadWait();
                 break;
-            case 2: Utils.clickOnElement(this.pricePerNightSorting);
+            case 2: await Utils.clickOnElement(this.pricePerNightSorting);
+                await Utils.twoSecondsDeadWait();
                 break;
             case 3: Utils.clickOnElement(this.distanceSorting);
+                await Utils.twoSecondsDeadWait();
                 break;
-            case 4: Utils.clickOnElement(this.hotelNameSorting);
+            case 4: await Utils.clickOnElement(this.hotelNameSorting);
+                await Utils.twoSecondsDeadWait();
                 break;
         }
     }
 
-    getSorting(SortingOptions): string {
+    async getSorting(SortingOptions) {
         var value;
         switch (SortingOptions) {
-            case 0: value = Utils.getElementAttributeValue(this.recommendedSorting, "aria-describedby");
+            case 0: value = await Utils.getElementAttributeValue(this.recommendedSorting, "aria-describedby");
                 break;
-            case 1: value = Utils.getElementAttributeValue(this.starRatingSorting, "aria-describedby");
+            case 1: value = await Utils.getElementAttributeValue(this.starRatingSorting, "aria-describedby");
                 break;
-            case 2: value = Utils.getElementAttributeValue(this.pricePerNightSorting, "aria-describedby");
+            case 2: value = await Utils.getElementAttributeValue(this.pricePerNightSorting, "aria-describedby");
                 break;
-            case 3: value = Utils.getElementAttributeValue(this.distanceSorting, "aria-describedby");
+            case 3: value = await Utils.getElementAttributeValue(this.distanceSorting, "aria-describedby");
                 break;
-            case 4: value = Utils.getElementAttributeValue(this.hotelNameSorting, "aria-describedby");
+            case 4: value = await Utils.getElementAttributeValue(this.hotelNameSorting, "aria-describedby");
         }
         return value;
 
     }
 
-    goToPage(Pagination) {
+    async goToPage(Pagination) {
         switch (Pagination) {
-            case 0: Utils.scrollToTheElementAndClick(this.paginationPage1)
+            case 0: await Utils.scrollToTheElementAndClick(this.paginationPage1)
                 break;
 
-            case 1: Utils.scrollToTheElementAndClick(this.paginationPage2)
+            case 1: await Utils.scrollToTheElementAndClick(this.paginationPage2)
                 break;
         }
 

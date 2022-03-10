@@ -6,40 +6,40 @@ describe('Test Vacation Applicaion:', () => {
     describe('Pagination and Sorting:', () => {
         let SearchResult: SearchResult;
 
-        before(function () {
-            HomePage.launchPage();
-            HomePage.goToHotelTab();
-            SearchResult = HomePage.searchHotels(TestData.SearchedDestinationNewYork, TestData.SearchedFromDate, TestData.SearchedToDate);
+        before(async function () {
+            await HomePage.launchPage();
+            await HomePage.goToHotelTab();
+            SearchResult = await HomePage.searchHotels(TestData.SearchedDestinationNewYork, TestData.SearchedFromDate, TestData.SearchedToDate);
         })
 
-        it('Should have Recommended sorting by default. @Smoke', () => {
-            expect(SearchResult.getSorting(SortingOptions.Recommended)).toContain(AssertionData.SortignOrderAscending);
+        it('Should have Recommended sorting by default. @Smoke', async () => {
+            expect(await SearchResult.getSorting(SortingOptions.Recommended)).toContain(AssertionData.SortignOrderAscending);
         })
 
-        it('Should apply sorting by Star Rating. @Regression', () => {
-            SearchResult.setSorting(SortingOptions.StarRating);
-            expect(SearchResult.getSorting(SortingOptions.StarRating)).toContain(AssertionData.SortingOrderDescending);
+        it('Should apply sorting by Star Rating. @Regression', async () => {
+            await SearchResult.setSorting(SortingOptions.StarRating);
+            expect(await SearchResult.getSorting(SortingOptions.StarRating)).toContain(AssertionData.SortingOrderDescending);
         })
 
-        it('Should apply sorting by Price Per Night. @Smoke', () => {
-            SearchResult.setSorting(SortingOptions.PricePerNight);
-            expect(SearchResult.getSorting(SortingOptions.PricePerNight)).toContain(AssertionData.SortignOrderAscending);
+        it('Should apply sorting by Price Per Night. @Smoke', async () => {
+            await SearchResult.setSorting(SortingOptions.PricePerNight);
+            expect(await SearchResult.getSorting(SortingOptions.PricePerNight)).toContain(AssertionData.SortignOrderAscending);
         })
 
-        it('Should apply sorting by Distance. @Regression', () => {
-            SearchResult.setSorting(SortingOptions.Distance);
-            expect(SearchResult.getSorting(SortingOptions.Distance)).toContain(AssertionData.SortignOrderAscending);
+        it('Should apply sorting by Distance. @Regression', async () => {
+            await SearchResult.setSorting(SortingOptions.Distance);
+            expect(await SearchResult.getSorting(SortingOptions.Distance)).toContain(AssertionData.SortignOrderAscending);
         })
 
-        it('Should apply sorting by Hotel Name. @Regression', () => {
-            SearchResult.setSorting(SortingOptions.HotelName);
-            expect(SearchResult.getSorting(SortingOptions.HotelName)).toContain(AssertionData.SortignOrderAscending);
+        it('Should apply sorting by Hotel Name. @Regression', async () => {
+            await SearchResult.setSorting(SortingOptions.HotelName);
+            expect(await SearchResult.getSorting(SortingOptions.HotelName)).toContain(AssertionData.SortignOrderAscending);
         })
 
-        it('Should move to page 2. @Smoke', () => {
-            expect(SearchResult.getHotelCount()).toContain(AssertionData.PaginationHotelCountPage1)
-            SearchResult.goToPage(Pagination.Page2);
-            expect(SearchResult.getHotelCount()).toContain(AssertionData.PaginationHotelCountPage2)
+        it('Should move to page 2. @Smoke', async () => {
+            expect(await SearchResult.getHotelCount()).toContain(AssertionData.PaginationHotelCountPage1)
+            await SearchResult.goToPage(Pagination.Page2);
+            expect(await SearchResult.getHotelCount()).toContain(AssertionData.PaginationHotelCountPage2)
         })
     });
 

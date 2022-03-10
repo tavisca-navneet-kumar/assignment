@@ -2,52 +2,52 @@ import { isTypeElement } from "typescript";
 
 export class Utils {
 
-    static clickOnElement(element: WebdriverIO.Element) {
-        element.waitForClickable();
-        element.click();
+    static async clickOnElement(element: WebdriverIO.Element) {
+        await element.waitForClickable();
+        await element.click();
 
     }
 
-    static scrollToTheElementAndClick(element: WebdriverIO.Element){
-        element.scrollIntoView();
-        this.twoSecondsDeadWait();
-        element.click();
-        this.twoSecondsDeadWait();
+    static async scrollToTheElementAndClick(element: WebdriverIO.Element) {
+        await element.scrollIntoView();
+        await this.twoSecondsDeadWait();
+        await element.click();
+        await this.twoSecondsDeadWait();
     }
 
-    static setValueInTextBox(element: WebdriverIO.Element, value: string) {
-        element.waitForEnabled();
-        element.setValue(value);
+    static async setValueInTextBox(element: WebdriverIO.Element, value: string) {
+        await element.waitForEnabled();
+        await element.setValue(value);
     }
 
-    static setValueAndTab(element: WebdriverIO.Element, value: string) {
-        element.waitForEnabled();
-        element.setValue(value);
-        browser.keys("Enter");
+    static async setValueAndTab(element: WebdriverIO.Element, value: string) {
+        await element.waitForEnabled();
+        await element.setValue(value);
+        await browser.keys("Enter");
     }
 
-    static getElementText(element: WebdriverIO.Element): string {
-        element.waitForDisplayed();
-        return element.getText();
-    }
-    
-    static refreshPage(){
-        browser.refresh();
+    static async getElementText(element: WebdriverIO.Element) {
+        await element.waitForDisplayed();
+        return await element.getText();
     }
 
-    static twoSecondsDeadWait(){
-        browser.pause(2000);
+    static async refreshPage() {
+        await browser.refresh();
     }
 
-    static clickOnElementByText(value:string){
-        const hotel = $('a[title~='+value+']');
-        hotel.waitForClickable();
-        hotel.click();
+    static async twoSecondsDeadWait() {
+        await browser.pause(2000);
     }
 
-    static getElementAttributeValue(element:WebdriverIO.Element,attribute:string){
-        element.waitForDisplayed();
-        element.waitForEnabled();
-        return element.getAttribute(attribute);
+    static async clickOnElementByText(value: string) {
+        const hotel = $('a[title~=' + value + ']');
+        await hotel.waitForClickable();
+        await hotel.click();
+    }
+
+    static async getElementAttributeValue(element: WebdriverIO.Element, attribute: string) {
+        await element.waitForDisplayed();
+        await element.waitForEnabled();
+        return await element.getAttribute(attribute);
     }
 }

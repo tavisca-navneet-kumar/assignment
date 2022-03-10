@@ -8,26 +8,26 @@ describe('Test Vacation Application:',function(){
        let SearchResults:SearchResult;
        let HotelInfo:HotelInfo;
 
-        before(function () {
-            HomePage.launchPage();
-            HomePage.goToHotelTab();
-            SearchResults =  HomePage.searchHotels(TestData.SearchedDestinationPune, TestData.SearchedFromDate, TestData.SearchedToDate);
-            HotelInfo = SearchResults.selectHotel(TestData.PuneSelectedHotelConrad);
+         before(async function ()  {
+            await HomePage.launchPage();
+            await HomePage.goToHotelTab();
+            SearchResults =  await HomePage.searchHotels(TestData.SearchedDestinationPune, TestData.SearchedFromDate, TestData.SearchedToDate);
+            HotelInfo = await SearchResults.selectHotel(TestData.PuneSelectedHotelConrad);
         })
 
-        it('Should have correct result for Hotel Name. @Smoke', () => {
+        it('Should have correct result for Hotel Name. @Smoke', async () => {
             
-            expect(HotelInfo.getHotleNameInfo()).toContain(AssertionData.PuneSelectedHotelConrad); 
+            expect(await HotelInfo.getHotleNameInfo()).toContain(AssertionData.PuneSelectedHotelConrad); 
         });
 
-        it('Should have correct result for Hotel Star Rating. @Regression', () => {
+        it('Should have correct result for Hotel Star Rating. @Regression', async () => {
             
-            expect(HotelInfo.getHotleRatingInfo()).toContain(AssertionData.PuneConradStarRating); 
+            expect(await HotelInfo.getHotleRatingInfo()).toContain(AssertionData.PuneConradStarRating); 
         });
 
-        it('Should have correct result for Hotel Room Count Info. @Smoke', () => {
+        it('Should have correct result for Hotel Room Count Info. @Smoke', async () => {
             
-            expect(HotelInfo.getRoomCountInfo()).toContain(AssertionData.PuneConradRoomCount); 
+            expect(await HotelInfo.getRoomCountInfo()).toContain(AssertionData.PuneConradRoomCount); 
         });
 
     })
